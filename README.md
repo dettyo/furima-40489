@@ -22,11 +22,11 @@
 | -------------------    | ---------- | ------------------------------ |
 | item_name              | string     | null: false                    |
 | explanation            | text       | null: false                    |
-| category               | references | null: false, ActiveHash        |
-| condition              | references | null: false, ActiveHash        |
-| shipping_fee_info      | references | null: false, ActiveHash        |
-| prefecture             | references | null: false, ActiveHash        |
-| shipping_date_info     | references | null: false, ActiveHash        |
+| category_id            | integer    | null: false, ActiveHash        |
+| condition_id           | integer    | null: false, ActiveHash        |
+| shipping_fee_info_id   | integer    | null: false, ActiveHash        |
+| prefecture_id          | integer    | null: false, ActiveHash        |
+| shipping_date_info_id  | integer    | null: false, ActiveHash        |
 | price                  | integer    | null: false                    |
 | user                   | references | null: false, foreign_key: true |
 
@@ -34,11 +34,11 @@
 - has_one :order
 - has_one_attached :image
 - belongs_to :user
-- belongs_to :category_id
-- belongs_to :condition_id
-- belongs_to :shipping_fee_info_id
-- belongs_to :prefecture_id
-- belongs_to :shipping_date_info_id
+- belongs_to :category
+- belongs_to :condition
+- belongs_to :shipping_fee_info
+- belongs_to :prefecture
+- belongs_to :shipping_date_info
 
 ## ordersテーブル
 
@@ -58,7 +58,7 @@
 | Column              | Type       | Options                        |
 | ------------------- | ---------- | ------------------------------ |
 | post_code           | string     | null: false                    |
-| prefecture          | references | null: false, ActiveHash        |
+| prefecture_id       | integer    | null: false, ActiveHash        |
 | city                | string     | null: false                    |
 | address             | string     | null: false                    |
 | building            | string     | null: true                     |
@@ -67,7 +67,7 @@
 
 ### Association
 - belongs_to :order
-- belongs_to :prefecture_id
+- belongs_to :prefecture
 
 
 ## categoriesテーブル
