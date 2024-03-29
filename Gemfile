@@ -72,6 +72,7 @@ group :test do
 end
 
 group :development do
+  gem 'rspec-rails', '~> 4.0.0'
   gem 'rubocop', require: false
 end
 
@@ -81,3 +82,4 @@ end
 
 gem 'pry-rails'
 gem 'devise'
+
