@@ -6,13 +6,18 @@ class FurimasController < ApplicationController
   end
 
   def new
-    @furima = furima.new
-    @item = Item.new
+    @furima = Furima.new
+    #@item = Item.new
     #binding.pry
   end
 
   def create
-    @furima = Item.create(item_params)
+    @furima = Furima.create(item_params)
+    if @furima.save
+      redirect_to root_path
+    else
+      render :new, status: :unprocessable_entity
+    end
   end
 
   private
@@ -24,10 +29,8 @@ class FurimasController < ApplicationController
   #  end
   #end
 
-  def item_paramsparams
-    params.require(:item).permit(:item_name, :explanation, :category_id, :condition_id,  :prefecture_id, :price)
-    #params.require(:item).permit(:item_name, :explanation, :category_id, :condition_id, :shipping_fee_info_id, :prefecture_id, :shipping_date_info_id, :price)
-    #params.require(:item).permit(:item_name, :explanation, :category_id, :condition_id, :shipping_fee_info_id, :prefecture_id, :shipping_date_info_id, :price).merge(user_id: current_user.id)
+  def item_params
+    params.require(:furima).permit(:item_name, :explanation, :category_id, :condition_id, :shipping_fee_info_id, :prefecture_id, :shipping_date_info_id, :price).merge(user_id: current_user.id)
   end
 
    

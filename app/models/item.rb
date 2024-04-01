@@ -25,7 +25,7 @@ class Item < ApplicationRecord
   #ジャンルの選択が「---」の時は保存できないようにする
   validates :category_id, numericality: { other_than: 1 , message: "can't be blank"}
   validates :condition, numericality: { other_than: 1 , message: "can't be blank"}
-  #validates :shipping_fee_info, numericality: { other_than: 1 , message: "can't be blank"}
+  validates :shipping_fee_info, numericality: { other_than: 1 , message: "can't be blank"}
   validates :prefecture, numericality: { other_than: 1 , message: "can't be blank"}
-  #validates :shipping_date_info, numericality: { other_than: 1 , message: "can't be blank"}
+  validates :shipping_date_info, numericality: { other_than: 1 , message: "can't be blank"}
 end
