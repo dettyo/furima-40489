@@ -6,11 +6,13 @@ class FurimasController < ApplicationController
   end
 
   def new
-    @furima = Furima.new
+    @furima = furima.new
+    @item = Item.new
+    #binding.pry
   end
 
   def create
-    @furima = Furima.create(furima_params)
+    @furima = Item.create(item_params)
   end
 
   private
@@ -22,9 +24,12 @@ class FurimasController < ApplicationController
   #  end
   #end
 
-  def furima_params
-    params.require(:furima).permit(:title, :catch_copy, :concept, :image).merge(user_id: current_user.id)
+  def item_paramsparams
+    params.require(:item).permit(:item_name, :explanation, :category_id, :condition_id,  :prefecture_id, :price)
+    #params.require(:item).permit(:item_name, :explanation, :category_id, :condition_id, :shipping_fee_info_id, :prefecture_id, :shipping_date_info_id, :price)
+    #params.require(:item).permit(:item_name, :explanation, :category_id, :condition_id, :shipping_fee_info_id, :prefecture_id, :shipping_date_info_id, :price).merge(user_id: current_user.id)
   end
 
+   
 
 end
