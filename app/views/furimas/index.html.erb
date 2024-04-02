@@ -132,9 +132,9 @@
       <% if @furimas.length > 0 %>
         <% @furimas.each do |furima| %>
           <li class='list'>
-            <%#= link_to "#" do %>
+            <%= link_to furima_path(furima.id) do %>
               <div class='item-img-content'>
-                <%= link_to image_tag(furima.image, class: "item-img"), furima_path(furima.id) %>
+                <%= image_tag(furima.image, class: "item-img") %>
 
                 <%# 商品が売れていればsold outを表示しましょう %>
                 <%# <div class='sold-out'>
@@ -155,7 +155,7 @@
                   </div>
                 </div>
               </div>
-            <%# end %>
+            <% end %>
           </li>
         <% end %>
       <%# /商品のインスタンス変数になにか入っている場合、中身のすべてを展開する %>
