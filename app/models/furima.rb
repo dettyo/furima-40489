@@ -22,7 +22,6 @@ class Furima < ApplicationRecord
     validates :prefecture_id, presence: true
     validates :shipping_date_info_id, presence: true
     validates :price, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999 }
-    validates :user, presence: true
     validates :image, presence: true
   
     #ジャンルの選択が「---」の時は保存できないようにする

@@ -7,9 +7,6 @@ function price (){
     let itemRevenue = itemPrice.value - commission;
     document.getElementById('add-tax-price').innerHTML = commission;
     document.getElementById('profit').innerHTML = itemRevenue;
-    console.log(itemPrice.value);
-    console.log(commission);
-    console.log(itemRevenue);
   });
 };
 

@@ -25,32 +25,32 @@ RSpec.describe Furima, type: :model do
         expect(@furima.errors.full_messages).to include("Explanation can't be blank")
       end
 
-      it 'カテゴリーが空だと保存できないこと' do
-        @furima.category_id = nil
+      it 'カテゴリーが---だと保存できないこと' do
+        @furima.category_id = 1
         @furima.valid?
         expect(@furima.errors.full_messages).to include("Category can't be blank")
       end
 
-      it '状態が空だと保存できないこと' do
-        @furima.condition_id = nil
+      it '状態が---だと保存できないこと' do
+        @furima.condition_id = 1
         @furima.valid?
         expect(@furima.errors.full_messages).to include("Condition can't be blank")
       end
       
-      it '発送費情報が空だと保存できないこと' do
-        @furima.shipping_fee_info_id = nil
+      it '発送費情報が---だと保存できないこと' do
+        @furima.shipping_fee_info_id = 1
         @furima.valid?
         expect(@furima.errors.full_messages).to include("Shipping fee info can't be blank")
       end
       
-      it '都道府県が空だと保存できないこと' do
-        @furima.prefecture_id = nil
+      it '都道府県が---だと保存できないこと' do
+        @furima.prefecture_id = 1
         @furima.valid?
         expect(@furima.errors.full_messages).to include("Prefecture can't be blank")
       end
       
-      it '発送日時情報が空だと保存できないこと' do
-        @furima.shipping_date_info_id = nil
+      it '発送日時情報が---だと保存できないこと' do
+        @furima.shipping_date_info_id = 1
         @furima.valid?
         expect(@furima.errors.full_messages).to include("Shipping date info can't be blank")
       end
@@ -83,6 +83,12 @@ RSpec.describe Furima, type: :model do
         @furima.price = '１０００'
         @furima.valid?
         expect(@furima.errors.full_messages).to include("Price is not a number")
+      end
+
+      it 'userが紐づいていないと出品できない' do
+        @furima.user = nil
+        @furima.valid?
+        expect(@furima.errors.full_messages).to include("User must exist")
       end
 
     end
