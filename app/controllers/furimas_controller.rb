@@ -1,5 +1,5 @@
 class FurimasController < ApplicationController
-  before_action :authenticate_user!, except: [:index] #:show
+  before_action :authenticate_user!, except: [:index, :show]
 
   def index
     @furimas = Furima.all.order("created_at DESC")
@@ -17,6 +17,11 @@ class FurimasController < ApplicationController
       render :new, status: :unprocessable_entity
     end
   end
+
+  def show
+    @furima = Furima.find(params[:id])
+  end
+
 
   private
 

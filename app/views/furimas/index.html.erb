@@ -132,9 +132,9 @@
       <% if @furimas.length > 0 %>
         <% @furimas.each do |furima| %>
           <li class='list'>
-            <%= link_to "#" do %>
+            <%#= link_to "#" do %>
               <div class='item-img-content'>
-                <%= link_to image_tag(furima.image, class: "item-img"), '#' %>
+                <%= link_to image_tag(furima.image, class: "item-img"), furima_path(furima.id) %>
 
                 <%# 商品が売れていればsold outを表示しましょう %>
                 <%# <div class='sold-out'>
@@ -155,7 +155,7 @@
                   </div>
                 </div>
               </div>
-            <% end %>
+            <%# end %>
           </li>
         <% end %>
       <%# /商品のインスタンス変数になにか入っている場合、中身のすべてを展開する %>
@@ -185,15 +185,8 @@
   </div>
   <%# /商品一覧 %>
 </div>
-<%#= if user_signed_in? %>
   <%= link_to new_furima_path, class: 'purchase-btn' do %>
     <span class='purchase-btn-text'>出品する</span>
     <%= image_tag 'icon_camera.png' , size: '185x50' ,class: "purchase-btn-icon" %>
   <% end %>
-<%#= else %>
-  <%#= link_to new_user_session_path, class: 'purchase-btn' do %>
-    <%#= <span class='purchase-btn-text'>出品する</span> %>
-    <%#= image_tag 'icon_camera.png' , size: '185x50' ,class: "purchase-btn-icon" %>
-  <%#= end %>
-<%#= end %>
 <%= render "shared/footer" %>
