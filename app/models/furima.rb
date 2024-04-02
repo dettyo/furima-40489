@@ -2,9 +2,11 @@ class Furima < ApplicationRecord
 
     #ここにorderのアソシエーションを追加する。下記のActiveHashとは別
   
-    belongs_to :user
+  has_one_attached :image
+  belongs_to :user
   
-    extend ActiveHash::Associations::ActiveRecordExtensions
+  #ActiveHashとのアソシエーション
+  extend ActiveHash::Associations::ActiveRecordExtensions
     belongs_to :category
     belongs_to :condition
     belongs_to :shipping_fee_info

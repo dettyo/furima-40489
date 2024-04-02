@@ -30,7 +30,7 @@ class FurimasController < ApplicationController
   #end
 
   def item_params
-    params.require(:furima).permit(:item_name, :explanation, :category_id, :condition_id, :shipping_fee_info_id, :prefecture_id, :shipping_date_info_id, :price).merge(user_id: current_user.id)
+    params.require(:furima).permit(:item_name, :explanation, :category_id, :condition_id, :shipping_fee_info_id, :prefecture_id, :shipping_date_info_id, :price, :image).merge(user_id: current_user.id)
   end
 
    
