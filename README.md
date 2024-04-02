@@ -12,11 +12,11 @@
 | first_name_kana     | string     | null: false                    |
 
 ### Association
-- has_many :items
+- has_many :furimas
 - has_many :orders
 
 
-## itemsテーブル
+## Furimaテーブル
 
 | Column                 | Type       | Options                        |
 | -------------------    | ---------- | ------------------------------ |
@@ -50,7 +50,7 @@
 ### Association
 - has_one :order_info
 - belongs_to :user
-- belongs_to :item
+- belongs_to :furima
 
 
 ## order_infosテーブル
@@ -77,7 +77,7 @@
 | name                | string     | null: false                    |
 
 ### Association
-- has_many :items
+- has_many :furimas
 
 
 ## conditionsテーブル
@@ -87,7 +87,7 @@
 | name                | string     | null: false                    |
 
 ### Association
-- has_many :items
+- has_many :furimas
 
 
 ## shipping_fee_infosテーブル
@@ -97,7 +97,7 @@
 | name                | string     | null: false                    |
 
 ### Association
-- has_many :items
+- has_many :furimas
 
 
 ## prefecturesテーブル
@@ -107,7 +107,7 @@
 | name                | string     | null: false                    |
 
 ### Association
-- has_many :items
+- has_many :furimas
 - has_many :order_infos
 
 
@@ -118,4 +118,4 @@
 | name                | string     | null: false                    |
 
 ### Association
-- has_many :items
+- has_many :furimas
