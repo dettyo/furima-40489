@@ -1,4 +1,6 @@
 class OrdersController < ApplicationController
+  before_action :authenticate_user!, only: [:index]
+  before_action :move_to_index, only: [:index]
 
   def index
     #binding.pry
@@ -19,6 +21,13 @@ class OrdersController < ApplicationController
   end
 
   private
+  def move_to_index
+    furima = Furima.find(params[:furima_id])
+    #binding.pry
+    if current_user.id == furima.user_id
+      redirect_to root_path
+    end
+  end
 
   def order_params
     params.permit(:furima).merge(user_id: current_user.id)
