@@ -27,6 +27,15 @@ class FurimasController < ApplicationController
     @furima = Furima.find(params[:id])
   end
 
+  def update
+    @furima = Furima.find(params[:id])
+    if @furima.update(item_params)
+      redirect_to furima_path(params[:id])
+    else
+      render :edit, status: :unprocessable_entity
+    end
+  end
+
   def destroy
     furima = Furima.find(params[:id])
     furima.destroy
