@@ -43,7 +43,7 @@ class FurimasController < ApplicationController
   private
   def move_to_index
     furima = Furima.find(params[:id])
-    unless current_user.id == furima.user_id
+    if current_user.id != furima.user_id || furima.order.present?
       redirect_to action: :index
     end
   end
