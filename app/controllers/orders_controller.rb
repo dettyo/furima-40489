@@ -1,40 +1,53 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!, only: [:index]
-  before_action :move_to_index, only: [:index]
+  #before_action :move_to_index, only: [:index]
 
   def index
     #binding.pry
     @furima = Furima.new
     @furima = Furima.find(params[:furima_id])
-    @order = Order.new
+    #@order = Order.new
+    @order_order_info = OrderOrderInfo.new
     #binding.pry
   end
 
-  def new
-  end
+  #def new
+  #  @order_order_info = OrderOrderInfo.new
+  #end
 
   def create
-    @order = Order.create(order_params)
-    OrderInfo.create(order_info_params)
-    redirect_to root_path
-    #binding.pry
+    @order_order_info = OrderOrderInfo.new(order_params)
+    binding.pry
+    if @order_order_info.valid?
+      @order_order_info.save
+      redirect_to root_path
+    else
+      render :new, status: :unprocessable_entity
+
+    #@order = Order.create(order_params)
+    #OrderInfo.create(order_info_params)
+    #redirect_to root_path
+
   end
 
   private
-  def move_to_index
-    furima = Furima.find(params[:furima_id])
-    #binding.pry
-    if current_user.id == furima.user_id
-      redirect_to root_path
+    def move_to_index
+      furima = Furima.find(params[:furima_id])
+      if current_user.id == furima.user_id
+        redirect_to root_path
+      end
+    end
+
+    def order_params
+      binding.pry
+      params.require(:order_order_info).permit(:post_code, :prefecture_id, :city, :address, :building, :telephone_num).merge(user_id: current_user.id)
+      #  params.permit(:furima).merge(user_id: current_user.id)
     end
   end
 
-  def order_params
-    params.permit(:furima).merge(user_id: current_user.id)
-  end
-
-  def order_info_params
-    params.permit(:post_code, :prefecture_id, :city, :address, :building, :telephone_num).merge(order_id: @order.id)
-  end
+  #def order_info_params
+  #  binding.pry
+  #  params.permit(:post_code, :prefecture_id, :city, :address, :building, :telephone_num).merge(order_id: @order.id)
+  #end
 
 end

@@ -1,4 +1,4 @@
-<%= render "shared/second-header"%>
+<%= render "shared/second-header" %>
 
 <div class='transaction-contents'>
   <div class='transaction-main'>
@@ -31,8 +31,8 @@
     </div>
     <%# /支払額の表示 %>
 
-    <%= form_with model: [@furima, @order], id: 'charge-form', class: 'transaction-form-wrap',local: true do |f| %>
-    <%= render 'shared/error_messages', model: f.object %>
+    <%= form_with model: [@furima, @order_order_info], url: furima_orders_path, id: 'charge-form', class: 'transaction-form-wrap',local: true do |f| %>
+    <%= render 'error_messages', model: @order_order_info %>
     <%# カード情報の入力 %>
     <div class='credit-card-form'>
       <h1 class='info-input-haedline'>
