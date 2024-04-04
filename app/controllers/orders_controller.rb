@@ -17,12 +17,15 @@ class OrdersController < ApplicationController
 
   def create
     @order_order_info = OrderOrderInfo.new(order_params)
-    binding.pry
+    #binding.pry
     if @order_order_info.valid?
       @order_order_info.save
       redirect_to root_path
     else
-      render :new, status: :unprocessable_entity
+      @furima = Furima.new
+      @furima = Furima.find(params[:furima_id])
+      render :index, status: :unprocessable_entity
+    end
 
     #@order = Order.create(order_params)
     #OrderInfo.create(order_info_params)
@@ -39,11 +42,10 @@ class OrdersController < ApplicationController
     end
 
     def order_params
-      binding.pry
-      params.require(:order_order_info).permit(:post_code, :prefecture_id, :city, :address, :building, :telephone_num).merge(user_id: current_user.id)
+      #binding.pry
+      params.require(:order_order_info).permit(:post_code, :prefecture_id, :city, :address, :building, :telephone_num).merge(furima_id: params[:furima_id], user_id: current_user.id)
       #  params.permit(:furima).merge(user_id: current_user.id)
     end
-  end
 
   #def order_info_params
   #  binding.pry
