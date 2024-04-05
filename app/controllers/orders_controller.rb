@@ -9,6 +9,7 @@ class OrdersController < ApplicationController
   end
 
   def create
+    binding.pry
     @order_order_info = OrderOrderInfo.new(order_params)
     if @order_order_info.valid?
       @order_order_info.save
