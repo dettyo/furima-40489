@@ -9,6 +9,7 @@ class OrderOrderInfo
     validates :city
     validates :address
     validates :telephone_num, format: { with: /\A\d{10,11}\z/, message: "is invalid. Input half-width numbers." }
+    validates :token
   end
 
   def save

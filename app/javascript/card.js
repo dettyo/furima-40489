@@ -1,5 +1,6 @@
 function card (){
-  const payjp = Payjp('pk_test_ac5665cbed5d001c87433f8b')
+  const publicKey = gon.public_key
+  const payjp = Payjp(publicKey)
   const elements = payjp.elements();
   const numberElement = elements.create('cardNumber');
   const expiryElement = elements.create('cardExpiry');
@@ -37,5 +38,5 @@ function card (){
   });
 };
 
-
 window.addEventListener('turbo:load', card);
+window.addEventListener("turbo:render", pay);
