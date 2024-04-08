@@ -1,7 +1,7 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!, only: [:index]
-  before_action :move_to_index, only: [:index]
   before_action :set_furima, only: [:index, :create]
+  before_action :move_to_index, only: [:index]
   before_action :set_public_key, only: [:index, :create]
 
   def index
@@ -21,8 +21,7 @@ class OrdersController < ApplicationController
 
   private
   def move_to_index
-    furima = Furima.find(params[:furima_id])
-    if current_user.id == furima.user_id || furima.order.present?
+    if current_user.id == @furima.user_id || @furima.order.present?
       redirect_to root_path
     end
   end
@@ -40,8 +39,7 @@ class OrdersController < ApplicationController
   end
 
   def pay_item
-    furima = Furima.find(params[:furima_id])
-    price = furima.price
+    price = @furima.price
     Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
     Payjp::Charge.create(
       amount: price,

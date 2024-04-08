@@ -4,7 +4,8 @@ RSpec.describe OrderOrderInfo, type: :model do
 
   before do
     user = FactoryBot.create(:user)
-    @order_order_info = FactoryBot.build(:order_order_info, user_id: user.id)
+    furima = FactoryBot.build(:furima)
+    @order_order_info = FactoryBot.build(:order_order_info, user_id: user.id, furima_id: furima.id)
   end
 
   describe 'オーダー画面' do

@@ -1,5 +1,6 @@
 FactoryBot.define do
   factory :furima do
+    id  {1}
     item_name               {'test'}
     explanation             {'test'}
     category_id             {2}
