@@ -1,7 +1,6 @@
 class Furima < ApplicationRecord
 
-    #ここにorderのアソシエーションを追加する。下記のActiveHashとは別
-  
+  has_one :order
   has_one_attached :image
   belongs_to :user
   

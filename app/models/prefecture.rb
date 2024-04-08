@@ -52,5 +52,6 @@ class Prefecture < ActiveHash::Base
 
   include ActiveHash::Associations
   has_many :furimas
+  has_many :order_infos
 
 end
