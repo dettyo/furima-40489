@@ -13,12 +13,6 @@ function card (){
   const form = document.getElementById("charge-form");
   form.addEventListener("submit", (e) => {
 
-    const formData = new FormData(document.getElementById("charge-form"));
-    const XHR = new XMLHttpRequest();
-    XHR.open("POST", "/furimas/:furima_id/orders", true);
-    XHR.responseType = "json";
-    XHR.send(formData);
-
     payjp.createToken(numberElement).then(function (response) {
       if (response.error) {
       } else {
@@ -39,4 +33,4 @@ function card (){
 };
 
 window.addEventListener('turbo:load', card);
-window.addEventListener("turbo:render", pay);
+window.addEventListener("turbo:render", card);

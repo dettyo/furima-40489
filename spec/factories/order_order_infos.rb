@@ -1,5 +1,6 @@
 FactoryBot.define do
   factory :order_order_info do
+    furima_id                {1}
     post_code                {'123-4567'}
     prefecture_id            {2}
     city                     {'あああ市'}

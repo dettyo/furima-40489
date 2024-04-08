@@ -70,7 +70,19 @@ RSpec.describe OrderOrderInfo, type: :model do
         @order_order_info.valid?
         expect(@order_order_info.errors.full_messages).to include("Token can't be blank")
       end
-   end
+      it 'userが紐付いていなければ購入できない' do
+        @order_order_info.user_id = nil
+        @order_order_info.valid?
+        expect(@order_order_info.errors.full_messages).to include("User can't be blank")
+      end
+      
+      it 'itemが紐付いていなければ購入できない' do
+        @order_order_info.furima_id = nil
+        @order_order_info.valid?
+        expect(@order_order_info.errors.full_messages).to include("Furima can't be blank")
+      end
+
+    end
   end
 
 end

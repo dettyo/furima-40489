@@ -1,11 +1,10 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!, only: [:index]
   before_action :move_to_index, only: [:index]
+  before_action :set_furima, only: [:index, :create]
+  before_action :set_public_key, only: [:index, :create]
 
   def index
-    gon.public_key = ENV["PAYJP_PUBLIC_KEY"]
-    @furima = Furima.new
-    @furima = Furima.find(params[:furima_id])
     @order_order_info = OrderOrderInfo.new
   end
 
@@ -16,9 +15,6 @@ class OrdersController < ApplicationController
       @order_order_info.save
       redirect_to root_path
     else
-      @furima = Furima.new
-      @furima = Furima.find(params[:furima_id])
-      gon.public_key = ENV["PAYJP_PUBLIC_KEY"]
       render :index, status: :unprocessable_entity
     end
   end
@@ -35,8 +31,15 @@ class OrdersController < ApplicationController
     params.require(:order_order_info).permit(:post_code, :prefecture_id, :city, :address, :building, :telephone_num).merge(furima_id: params[:furima_id], user_id: current_user.id, token: params[:token])
   end
 
+  def set_furima
+    @furima = Furima.find(params[:furima_id])
+  end
+
+  def set_public_key
+    gon.public_key = ENV["PAYJP_PUBLIC_KEY"]
+  end
+
   def pay_item
-    furima = Furima.new
     furima = Furima.find(params[:furima_id])
     price = furima.price
     Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
