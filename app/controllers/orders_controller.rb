@@ -10,7 +10,7 @@ class OrdersController < ApplicationController
 
   def create
     @order_order_info = OrderOrderInfo.new(order_params)
-    if @order_order_info.valid? #バリデーションが成功したかどうか
+    if @order_order_info.valid?
       pay_item
       @order_order_info.save
       redirect_to root_path
